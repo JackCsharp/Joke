@@ -1,0 +1,17 @@
+.AuthForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20vh;
+}
+.Password {
+  justify-content: center;
+  align-items: center;
+}
+.errorForm {
+  background-color: wheat;
+  border: 2px solid beige;
+  margin: 4px;
+  font-size: large;
+  color: teal;
+}

@@ -1,0 +1,12 @@
+.main{
+    display: flex;
+}
+.leftBar{
+    align-items: center;
+    justify-content: left;
+    width: 18vw;
+}
+.rightBar{
+    align-items: center;
+    justify-content: right;
+}

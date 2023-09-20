@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  height: 89vh;
+}
+
+.leftBar {
+  justify-content: left;
+  border: 1px solid black;
+  align-items: center;
+  width: 17vw;
+  margin-left: 1px;
+}
+.rightBar {
+  justify-content: right;
+  align-items: right;
+}

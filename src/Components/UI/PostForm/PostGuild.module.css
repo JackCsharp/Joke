@@ -1,0 +1,20 @@
+
+.inputs{
+    align-items: center;
+    justify-content: center;
+}
+.image-container{
+}
+
+.image{
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+.image:hover{
+    cursor: pointer;
+}
+.image:active{
+    opacity: 0.5; /* Пример: уменьшает непрозрачность изображения при его активации (нажатии) */
+    border: 2px solid red; /* Пример: добавляет красную обводку при активации */
+}

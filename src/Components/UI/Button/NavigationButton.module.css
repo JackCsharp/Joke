@@ -1,0 +1,15 @@
+.navBut {
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+  width: 15vw;
+  height: 5vh;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.navBut:hover {
+  background-color: black;
+  color: white;
+}

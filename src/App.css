@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+}
+
+.main {
+  display: flex;
+}
+
+.text {
+  justify-content: right;
+  align-items: right;
+}
+
+.navbar {
+  display: flex;
+  justify-content: left;
+  width: 20vw;
+}
+
+.navpanel {
+  background-color: rgba(0, 0, 0, 0.781);
+  border: 3px solid black;
+  padding: 3px;
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.navpanel:hover {
+  background-color: white;
+}
+.toppanel {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+}
+.routepanel {
+  display: flex;
+  justify-content: left;
+}
+.authpanel {
+  display: flex;
+  justify-content: flex-end !important;
+  align-items: center !important;
+}

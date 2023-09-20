@@ -1,0 +1,19 @@
+.image {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+}
+.wrapper {
+  display: block;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.header {
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+.main {
+  display: block;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,11 @@
+.defaultInput{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 35vw;
+    height: 5vh;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: larger;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
+}

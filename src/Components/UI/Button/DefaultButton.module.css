@@ -1,0 +1,14 @@
+.defaultButton {
+  margin-top: 5px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  width: 17vw;
+  height: 5vh;
+  cursor: pointer;
+}
+
+.defaultButton:hover {
+  background-color: white;
+  color: black;
+}
