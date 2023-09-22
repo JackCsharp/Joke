@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./PostItem.module.css";
+import classes from "./JokeItem.module.css";
 import DefaultButton from "../UI/Button/DefaultButton";
 import { useNavigate } from "react-router-dom";
-const PostItem = (props) => {
+const JokeItem = (props) => {
   const navigate = useNavigate();
   function itemRedirection(id) {
     navigate(`/joke/${id}`);
@@ -20,4 +20,4 @@ const PostItem = (props) => {
   );
 };
 
-export default PostItem;
+export default JokeItem;

@@ -19,7 +19,8 @@ export default class UserService {
     }
   }
   static async getUser(id) {
-    return await axios.get(`https://localhost:7223/api/User/${id}`);
+    const response = await axios.get(`https://localhost:7223/api/User/${id}`);
+    return response.data[0];
   }
 
   static async getJokes(id) {
@@ -34,7 +35,6 @@ export default class UserService {
   }
   static async updateGuild(userId, guildId) {
     try {
-      console.log(userId, guildId);
       await axios.put(
         `https://localhost:7223/api/User/UpdateGuild${userId},${guildId}`
       );

@@ -11,13 +11,13 @@ import ModalCreation from "../Components/ModalWindows/ModalCreation";
 
 const GuildDetailsPage = () => {
   const { userId } = useContext(AuthContext);
-  const [guild, setGuild] = useState({});
   const { id } = useParams();
+  const [guild, setGuild] = useState({ guildId: id });
+
   const [visible, setVisible] = useState(false);
   async function fetchData() {
     const response = await GuildService.getGuild(id);
     setGuild(response);
-    console.log(guild);
   }
   useEffect(() => {
     fetchData();
@@ -27,14 +27,16 @@ const GuildDetailsPage = () => {
     const response = await UserService.updateGuild(userId, id);
     fetchData();
     setVisible(true);
+    console.log(guild.guildId === id);
   }
 
   return (
     <div className={classes.wrapper}>
       <ModalCreation isActive={visible} setIsActive={setVisible}>
-        Вы успешно вступили в гильдию {guild.name}
+        <div>Вы успешно вступили в гильдию {guild.name}</div>
         <div>Обновите страницу, чтобы увидеть изменения</div>
       </ModalCreation>
+
       <div className={classes.header}>
         <img
           className={classes.image}

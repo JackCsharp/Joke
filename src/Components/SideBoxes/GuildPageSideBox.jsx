@@ -18,7 +18,7 @@ const GuildPageSideBox = (props) => {
   }
   async function getGuild() {
     const response = await UserService.getUser(userId);
-    setGuildId(response.data[0].guildId);
+    setGuildId(response.guildId);
   }
   useEffect(() => {
     getGuild();

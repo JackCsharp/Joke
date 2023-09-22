@@ -25,7 +25,6 @@ export default class GuildService {
       const members = response.data;
       return members;
     } catch (e) {
-      console.log(e);
       return null;
     }
   }

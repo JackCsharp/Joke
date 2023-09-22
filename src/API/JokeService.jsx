@@ -22,7 +22,10 @@ export default class JokeService {
     const response = await axios.get(`https://localhost:7223/api/Joke/${id}`);
     return response.data[0];
   }
-  static async getAllComments(id) {
-    //const response = await axios.get(``);
+  static async getAllComments(jokeId) {
+    const response = await axios.get(
+      `https://localhost:7223/api/Joke/Comments/${jokeId}`
+    );
+    return response.data;
   }
 }
