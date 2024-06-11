@@ -2,10 +2,15 @@ import axios from "axios";
 
 export default class UserService {
   static async Register(user) {
-    console.log(user);
     try {
-      await axios.post("https://localhost:7223/api/User/register", user);
-    } catch (error) {}
+      const response = await axios.post(
+        "https://localhost:7223/api/User/register",
+        user
+      );
+      return response;
+    } catch (error) {
+      return null;
+    }
   }
   static async Login(user) {
     try {
@@ -42,5 +47,9 @@ export default class UserService {
     } catch (e) {
       return false;
     }
+  }
+  static async getAllUsers() {
+    const users = await axios.get(`https://localhost:7223/api/User`);
+    return users;
   }
 }

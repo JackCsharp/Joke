@@ -1,7 +1,7 @@
 import UserService from "../../../API/UserService";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Context";
-import JokeList from "../../../Components/Posts/JokeList";
+import JokeList from "../../../Components/Jokes/JokeList";
 
 const AllJokesTab = () => {
   const [jokes, setJokes] = useState([]);
@@ -16,7 +16,7 @@ const AllJokesTab = () => {
 
   return (
     <div>
-      Свои шутки
+      My jokes
       <JokeList posts={jokes}></JokeList>
     </div>
   );

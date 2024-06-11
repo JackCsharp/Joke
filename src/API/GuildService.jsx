@@ -3,7 +3,6 @@ export default class GuildService {
   static async getAll() {
     const response = await axios.get("https://localhost:7223/api/Guild");
     const guilds = response.data;
-    //guilds.splice(0, 1); this is for future tests
     return guilds;
   }
   static async addGuild(guild) {
@@ -24,6 +23,19 @@ export default class GuildService {
       );
       const members = response.data;
       return members;
+    } catch (e) {
+      return null;
+    }
+  }
+  static async getMessagesByGuild(id) {
+    const messages = await axios.get(
+      `https://localhost:7223/api/Guild/allmessagesbyguild/${id}`
+    );
+    return messages;
+  }
+  static async addMessage(message) {
+    try {
+      await axios.post(`https://localhost:7223/api/Guild/addmessage`, message);
     } catch (e) {
       return null;
     }

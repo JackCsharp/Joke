@@ -17,3 +17,43 @@
   justify-content: center;
   align-items: center;
 }
+.guildJokes {
+  margin-left: 35px;
+  margin-top: 5px;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 90vw;
+}
+.guildJokesTitle {
+  margin-left: 40%;
+  text-align: center;
+}
+.chat {
+  max-height: 400px;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 70vw;
+  border: 2px solid black;
+
+  overflow-y: auto;
+}
+.chatMessage {
+  margin: 12px;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+}
+.chatHeader {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 25px;
+  border-radius: 25px;
+  text-align: center;
+}
+.inputBar {
+  display: flex;
+  align-items: center;
+}
+.inputButton {
+  margin-top: 15px;
+}

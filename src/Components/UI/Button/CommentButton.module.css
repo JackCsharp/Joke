@@ -1,0 +1,10 @@
+.commentButton {
+  background-color: #101820;
+  color: #fee715;
+  margin-right: 5px;
+}
+.commentButton:hover {
+  background-color: #fee715;
+  color: #101820;
+  cursor: pointer;
+}

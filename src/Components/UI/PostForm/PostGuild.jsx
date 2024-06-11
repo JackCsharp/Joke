@@ -53,7 +53,7 @@ const PostGuild = () => {
           />
         ))}
       </div>
-      <DefaultButton onClick={(e) => Submit(e)}>Создать</DefaultButton>
+      <DefaultButton onClick={(e) => Submit(e)}>Create</DefaultButton>
     </form>
   );
 };

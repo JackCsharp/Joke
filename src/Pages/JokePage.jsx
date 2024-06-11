@@ -1,7 +1,7 @@
 import "../App.css";
 import DefaultButton from "../Components/UI/Button/DefaultButton";
 import { useState, useEffect } from "react";
-import JokeList from "../Components/Posts/JokeList";
+import JokeList from "../Components/Jokes/JokeList";
 import ModalCreation from "../Components/ModalWindows/ModalCreation";
 import PostForm from "../Components/UI/PostForm/PostForm";
 import JokeService from "../API/JokeService";

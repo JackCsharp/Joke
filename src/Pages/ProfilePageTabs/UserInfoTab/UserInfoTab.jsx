@@ -16,7 +16,7 @@ const UserInfoTab = () => {
   }, []);
   return (
     <div>
-      <h1>Имя пользователя</h1>
+      <h1>Username</h1>
       {userData.username}
     </div>
   );

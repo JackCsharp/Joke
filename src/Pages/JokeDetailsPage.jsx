@@ -7,78 +7,34 @@ import DefaultButton from "../Components/UI/Button/DefaultButton";
 import classes from "./Styles/JokeDetailsPage.module.css";
 import CommentService from "../API/CommentService";
 import { AuthContext } from "../Context/index";
+import CommentReplies from "../Components/CommentReplies/CommendReplies";
+import ReplyService from "../API/ReplyService";
+import Comments from "../Components/Comments/Comments";
 
 const JokeDetailsPage = () => {
   const { id } = useParams();
   const [joke, setJoke] = useState({});
-  const [comments, setComments] = useState([]);
-  const { userId } = useContext(AuthContext);
-  const [userComment, setUserComment] = useState({
-    text: "",
-    jokeId: id,
-    userId: userId,
-  });
 
-  async function sendComment() {
-    await CommentService.addComment(userComment);
-    setUserComment({
-      text: "",
-      jokeId: id,
-      userId: userId,
-    });
-    fetchComments();
-  }
+  const { userId } = useContext(AuthContext);
 
   async function fetchJoke() {
     const response = await JokeService.getJoke(id);
-    setJoke(response);
     const user = await UserService.getUser(response.userId);
     setJoke({ ...response, author: user.username });
   }
-  async function fetchComments() {
-    const commentData = await JokeService.getAllComments(id);
-    const newComments = await Promise.all(
-      commentData.map(async (comment) => {
-        const user = await UserService.getUser(comment.userId);
-        return {
-          text: comment.text,
-          key: comment.commentId,
-          author: user.username,
-        };
-      })
-    );
-    setComments(newComments);
-  }
+
   useEffect(() => {
     fetchJoke();
-    fetchComments();
   }, []);
   return (
     <div>
       <div className={classes.joke}>
         <h1>{joke.title}</h1>
         <h2>{joke.text}</h2>
-        <h3>Автор: {joke.author}</h3>
+        <h3>Author: {joke.author}</h3>
       </div>
 
-      <div className={classes.form}>
-        <CommentInput
-          value={userComment.text}
-          onChange={(e) =>
-            setUserComment({ ...userComment, text: e.target.value })
-          }
-          placeholder="Ваш комментарий"
-        ></CommentInput>
-        <DefaultButton onClick={() => sendComment()}>
-          Опубликовать
-        </DefaultButton>
-      </div>
-      {comments.map((c, index) => (
-        <div className={classes.comment} key={index}>
-          <div>{c.author}</div>
-          <div>{c.text}</div>
-        </div>
-      ))}
+      <Comments jokeId={id}></Comments>
     </div>
   );
 };

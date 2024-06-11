@@ -1,20 +1,19 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { publicroutes, privateroutes } from "../../../Router/routes";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import NavigationButton from "../Button/NavigationButton";
 import { AuthContext } from "../../../Context";
 const AppRouter = () => {
   const [isAutorized, setIsAutorized] = useState(false);
   const [userId, setUserId] = useState(null);
   useEffect(() => {
-    if(localStorage.getItem('userId')){
-      setIsAutorized(true)
-      const stringId = localStorage.getItem('userId')
+    if (localStorage.getItem("userId")) {
+      setIsAutorized(true);
+      const stringId = localStorage.getItem("userId");
       const numberId = parseInt(stringId, 10);
-      setUserId(numberId)
+      setUserId(numberId);
     }
   }, []);
-
 
   return (
     <div>
@@ -25,28 +24,28 @@ const AppRouter = () => {
           <div className="navpanel">
             <div className="routepanel">
               <Link to="/home">
-                <NavigationButton>Начальная страница</NavigationButton>
+                <NavigationButton>Home</NavigationButton>
               </Link>
               <Link to="/jokes">
-                <NavigationButton>Шутки</NavigationButton>
+                <NavigationButton>Jokes</NavigationButton>
               </Link>
               <Link to="/guilds">
-                <NavigationButton>Гильдии</NavigationButton>
+                <NavigationButton>Guilds</NavigationButton>
               </Link>
             </div>
             {isAutorized ? (
               <div>
                 <Link to="/profile">
-                  <NavigationButton>Профиль</NavigationButton>
+                  <NavigationButton>Profile</NavigationButton>
                 </Link>
               </div>
             ) : (
               <div className="authpanel">
                 <Link to="/auth">
-                  <NavigationButton>Войти</NavigationButton>
+                  <NavigationButton>Log In</NavigationButton>
                 </Link>
                 <Link to="/register">
-                  <NavigationButton>Регистрация</NavigationButton>
+                  <NavigationButton>Register</NavigationButton>
                 </Link>
               </div>
             )}

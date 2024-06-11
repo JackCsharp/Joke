@@ -2,4 +2,6 @@
   border: 2px solid black;
   max-width: 25vw;
   max-height: 20vh;
+
+  overflow-y: auto;
 }

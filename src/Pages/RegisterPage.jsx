@@ -7,7 +7,7 @@ import UserService from "../API/UserService";
 import { AuthContext } from "../Context";
 
 const RegisterPage = () => {
-  const { setIsAutorized } = useContext(AuthContext);
+  const { setIsAutorized, setUserId } = useContext(AuthContext);
   const [myType, setMyType] = useState("password");
   const [user, setUser] = useState({ username: "", password: "" });
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -16,7 +16,7 @@ const RegisterPage = () => {
 
   const togglePasswordVisibility = (e) => {
     e.preventDefault();
-    myType === "password" ? setMyType("text") : setMyType("password");
+    setMyType((prevType) => (prevType === "password" ? "text" : "password"));
   };
 
   const Register = async (e) => {
@@ -24,15 +24,25 @@ const RegisterPage = () => {
     setErrors([]);
     const validationErrors = await CheckData();
     if (validationErrors.length === 0) {
-      UserService.Register(user)
-        ? setSuccessMessage("Пользователь успешно создан")
-        : validationErrors.push("Пользователь с таким ником уже существует");
-      setUser({ username: "", password: "" });
-      setPasswordConfirmation("");
-      setErrors(validationErrors);
-      if (!successMessage) {
-        setIsAutorized(true);
+      console.log(user);
+      try {
+        const response = await UserService.Register(user);
+        if (response !== null) {
+          setSuccessMessage("User Created");
+          setUser({ username: "", password: "" });
+          setPasswordConfirmation("");
+          setIsAutorized(true);
+
+          setUserId(response.data.userId);
+          const stringUserId = response.data.userId.toString();
+          localStorage.setItem("userId", stringUserId);
+        } else {
+          validationErrors.push("User with this name already exist");
+        }
+      } catch (error) {
+        validationErrors.push("Registration failed");
       }
+      setErrors(validationErrors);
     } else {
       setUser({ username: "", password: "" });
       setPasswordConfirmation("");
@@ -44,30 +54,32 @@ const RegisterPage = () => {
     const validationErrors = [];
 
     if (user.username === "" || user.password === "") {
-      validationErrors.push("Никаких пустых строк");
+      validationErrors.push("No empty strings");
     }
     if (user.username.includes(" ")) {
-      validationErrors.push("В прозвище не может быть пробела");
+      validationErrors.push("Can't have space in name");
     }
     if (user.username.length < 5) {
-      validationErrors.push("Минимум 5 символов в прозвище");
+      validationErrors.push("At least 5 symbols");
     }
-    if (user.password < 8 || /^(?=.*[a-zA-Z])(?=.*\d).+$/.test(user.password)) {
+    if (
+      user.password.length < 8 ||
+      !/^(?=.*[a-zA-Z])(?=.*\d).+$/.test(user.password)
+    ) {
       validationErrors.push(
-        "Сделай ce6e нормальный пароль из минимум 8 символов и цифр"
+        "Do yourself a normal password with letters and numbers"
       );
     }
     if (user.password !== passwordConfirmation) {
-      validationErrors.push("Пароли не совпадают");
+      validationErrors.push("The passwords do not match");
     }
-    setErrors([]);
     return validationErrors;
   }
 
   return (
     <div className={classes.AuthForm}>
       <form>
-        <h1>Создать свое убежище</h1>
+        <h1>Create your shelter</h1>
         {errors && (
           <div>
             {errors.map((error, index) => (
@@ -77,34 +89,33 @@ const RegisterPage = () => {
             ))}
           </div>
         )}
-        {successMessage && <div>Пользователь успешно создан</div>}
+        {successMessage && <div>{successMessage}</div>}
         <DefaultInput
           value={user.username}
           onChange={(e) => setUser({ ...user, username: e.target.value })}
-          placeholder=" Прозвище владельца"
+          placeholder="Username"
         />
         <div className={classes.Password}>
           <DefaultInput
             value={passwordConfirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
             type={myType}
-            placeholder=" Тайный шифр для входа"
+            placeholder="Confirm the secret code"
           />
-          <ShowPasswordButton
-            onClick={togglePasswordVisibility}
-          ></ShowPasswordButton>
+          <ShowPasswordButton onClick={togglePasswordVisibility} />
         </div>
         <DefaultInput
           type={myType}
-          placeholder=" Подтверди тайный шифр"
+          placeholder="Secret code for entry"
           value={user.password}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
         <div>
-          <DefaultButton onClick={Register}>Создать</DefaultButton>
+          <DefaultButton onClick={Register}>Create</DefaultButton>
         </div>
       </form>
     </div>
   );
 };
+
 export default RegisterPage;

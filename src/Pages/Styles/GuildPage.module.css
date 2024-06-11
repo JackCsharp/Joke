@@ -1,12 +1,12 @@
-.main{
-    display: flex;
+.main {
+  display: flex;
 }
-.leftBar{
-    align-items: center;
-    justify-content: left;
-    width: 18vw;
+.leftBar {
+  align-items: center;
+  justify-content: left;
+  width: 18vw;
 }
-.rightBar{
-    align-items: center;
-    justify-content: right;
+.rightBar {
+  align-items: center;
+  justify-content: right;
 }

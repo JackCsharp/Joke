@@ -20,15 +20,15 @@ const ProfilePage = () => {
     <div className={classes.main}>
       <div className={classes.leftBar}>
         <DefaultButton onClick={() => handlerTabChange("info")}>
-          Информация про Джокера
+          Info about joker
         </DefaultButton>
         <WhiteButton onClick={() => handlerTabChange("myJokes")}>
-          Свои шутки
+          My jokes
         </WhiteButton>
         <DefaultButton onClick={() => handlerTabChange("favorite")}>
-          Избранное
+          Favorite
         </DefaultButton>
-        <WhiteButton onClick={() => exit()}>Выйти</WhiteButton>
+        <WhiteButton onClick={() => exit()}>Log out</WhiteButton>
       </div>
       <div className={classes.rightBar}></div>
       {activeTab === "info" && <UserInfoTab></UserInfoTab>}

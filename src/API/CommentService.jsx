@@ -2,6 +2,7 @@ import axios from "axios";
 
 export default class CommentService {
   static async addComment(comment) {
+    console.log(comment);
     await axios.post(`https://localhost:7223/api/Comment`, comment);
   }
   static async deleteJoke(id) {

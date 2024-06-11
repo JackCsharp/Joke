@@ -28,12 +28,10 @@ const GuildPageSideBox = (props) => {
       <ModalCreation isActive={visible} setIsActive={setVisible}>
         <PostGuild></PostGuild>
       </ModalCreation>
-      <WhiteButton onClick={() => setVisible(true)}>
-        Создать гильдию
-      </WhiteButton>
+      <WhiteButton onClick={() => setVisible(true)}>Create Guild</WhiteButton>
 
       <DefaultButton onClick={() => itemRedirection(guildId)}>
-        Моя гильдия
+        My Guild
       </DefaultButton>
     </div>
   );

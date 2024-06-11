@@ -15,6 +15,12 @@ export default class JokeService {
       userId: p.userId,
     });
   }
+  static async reportJoke(id) {
+    const joke = await this.getJoke(id);
+
+    joke.title = joke.title + "%red";
+    await axios.put(`https://localhost:7223/api/Joke/${id}`, joke);
+  }
   static async deleteJoke(id) {
     await axios.delete(`https://localhost:7223/api/Joke/${id}`);
   }
@@ -24,8 +30,14 @@ export default class JokeService {
   }
   static async getAllComments(jokeId) {
     const response = await axios.get(
-      `https://localhost:7223/api/Joke/Comments/${jokeId}`
+      `https://localhost:7223/api/Joke/Comments/${jokeId.jokeId}`
     );
     return response.data;
+  }
+  static async getJokesByGuild(guildId) {
+    const jokes = await axios.get(
+      `https://localhost:7223/api/Joke/JokesByGuild/${guildId}`
+    );
+    return jokes;
   }
 }
